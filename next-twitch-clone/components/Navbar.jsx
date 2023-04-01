@@ -6,7 +6,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { BsPerson, BsSearch, BsThreeDotsVertical } from "react-icons/bs";
 import Link from "next/link";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import {useSession, signIn, signOut} from 'next-auth/react'
+import { useSession, signIn, signOut } from "next-auth/react";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -19,7 +19,7 @@ const Navbar = () => {
     setNav(!nav);
   };
 
-  const {data: session } = useSession();
+  const { data: session } = useSession();
 
   return (
     <div className="fixed h-14 w-full flex flex-nowrap items-center p-4 bg-[#0e0e10] mb-[2px] z-10">
@@ -99,71 +99,74 @@ const Navbar = () => {
       </div>
       {/*Right SIde */}
       <div className="hidden md:flex grow items-center justify-end">
-       {session ? (<div className="flex items-center">
-<Link href='/account'>
-  <div>
-    <p className="pr-4 cursor-pointer">
-      Welcome, {session.user.name}
-    </p>
-  </div>
-</Link>
-<Menu>
-            <Menu.Button>
-              <Image src={session.user.image} className='rounded-full' width='45' height='45' />
-            </Menu.Button>
-            <Transition
-              as={Fragment}
-              enter="transition duration-100 ease-out"
-              enterFrom="transform scale-95 opacity-0"
-              enterTo="transform scale-100 opacity-100"
-              leave="transition duration-75 ease-out"
-              leaveFrom="transform scale-100 opacity-100"
-              leaveTo="transform scale-95 opacity-0"
-            >
-              <Menu.Items
-                className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-[#0e0e10] ring-1 ring-opacity-5 focus:outline-none"
-                style={{
-                  top: "calc(100% + 0.5rem)",
-                  transform: "translateY(0.5rem)",
-                }}
+        {session ? (
+          <div className="flex items-center">
+            <Link href="/account">
+              <div>
+                <p className="pr-4 cursor-pointer">
+                  Welcome, {session.user.name}
+                </p>
+              </div>
+            </Link>
+            <Menu>
+              <Menu.Button>
+                <Image
+                  src={session.user.image}
+                  className="rounded-full"
+                  width="45"
+                  height="45"
+                />
+              </Menu.Button>
+              <Transition
+                as={Fragment}
+                enter="transition duration-100 ease-out"
+                enterFrom="transform scale-95 opacity-0"
+                enterTo="transform scale-100 opacity-100"
+                leave="transition duration-75 ease-out"
+                leaveFrom="transform scale-100 opacity-100"
+                leaveTo="transform scale-95 opacity-0"
               >
-                <Menu.Item>
-                  {({ active }) => (
-                    <a
-                      className={`${active && "bg-blue-500"} block`}
-                      href="/account"
-                    >
-                      Account 
-                    </a>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {({ active }) => (
-                    <p
-                    onClick={() => signOut()}
-                      className={`${active && "bg-blue-500"} block`}
-                      
-                    >
-                      Logout
-                    </p>
-                  )}
-                </Menu.Item>
-              </Menu.Items>
-            </Transition>
-          </Menu>
-
-       </div>
-       ) 
-       : (
-        <div className="flex items-center">
-        <Link href="/account">
-          <button className="px-4 py-[6px] rounded-lg font-bold bg-[#9147ff] mr-2">
-            Account
-          </button>
-        </Link>
-        <BsPerson size={30} />
-      </div>
-       )}
+                <Menu.Items
+                  className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-[#0e0e10] ring-1 ring-opacity-5 focus:outline-none"
+                  style={{
+                    top: "calc(100% + 0.5rem)",
+                    transform: "translateY(0.5rem)",
+                  }}
+                >
+                  <Menu.Item>
+                    {({ active }) => (
+                      <a
+                        className={`${active && "bg-blue-500"} block`}
+                        href="/account"
+                      >
+                        Account
+                      </a>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {({ active }) => (
+                      <p
+                        onClick={() => signOut()}
+                        className={`${active && "bg-blue-500"} block`}
+                      >
+                        Logout
+                      </p>
+                    )}
+                  </Menu.Item>
+                </Menu.Items>
+              </Transition>
+            </Menu>
+          </div>
+        ) : (
+          <div className="flex items-center">
+            <Link href="/account">
+              <button className="px-4 py-[6px] rounded-lg font-bold bg-[#9147ff] mr-2">
+                Account
+              </button>
+            </Link>
+            <BsPerson size={30} />
+          </div>
+        )}
       </div>
       {/* Hamburger Menu  */}
       <div
@@ -182,16 +185,16 @@ const Navbar = () => {
         }
       >
         <ul className="text-center">
-          <li className="p-4 text-3xl font-bold">
+          <li onClick={() => setNav(false)} className="p-4 text-3xl font-bold">
             <Link href="/">Home</Link>
           </li>
-          <li className="p-4 text-3xl font-bold">
+          <li onClick={() => setNav(false)} className="p-4 text-3xl font-bold">
             <Link href="/">Live Channeks</Link>
           </li>
-          <li className="p-4 text-3xl font-bold">
+          <li onClick={() => setNav(false)} className="p-4 text-3xl font-bold">
             <Link href="/">Top Categories</Link>
           </li>
-          <li className="p-4 text-3xl font-bold">
+          <li onClick={() => setNav(false)} className="p-4 text-3xl font-bold">
             <Link href="/">Account</Link>
           </li>
         </ul>
