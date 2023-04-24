@@ -75,7 +75,7 @@ const LiveChannels = () => {
           profile_img="https://static-cdn.jtvnw.net/jtv_user_pictures/daffe63d-8a12-4149-a148-a06c98f70801-profile_image-50x50.png"
           title="Day 8! Surviving alone! Short Stream"
           user="Tusky"
-          game="Escape from Tarkov"
+          game="Escaped from Tarkov"
         />
         <LiveChannelitem
           img={Live9}
